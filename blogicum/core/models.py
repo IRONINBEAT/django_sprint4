@@ -1,14 +1,19 @@
 from django.db import models
 
 
-class PublishedModel(models.Model):
+class PublishedAndCreatedModel(models.Model):
+    """Абстрактная модель. Добвляет флаг is_published и
+    дату и время создания created_at.
+    """
+
     is_published = models.BooleanField(
+        verbose_name="Опубликовано",
         default=True,
-        verbose_name='Опубликовано',
-        help_text='Снимите галочку, чтобы скрыть публикацию.',
+        help_text="Снимите галочку, чтобы скрыть публикацию.",
     )
+
     created_at = models.DateTimeField(
-        auto_now_add=True, verbose_name='Добавлено'
+        verbose_name="Добавлено", auto_now_add=True
     )
 
     class Meta:
